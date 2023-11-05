@@ -1,9 +1,18 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "JSON/YAML files comparing tool"
 authors = ["Ivlev Nikita <thel4stofme@yandex.ru>"]
 readme = "README.md"
+packages = [
+  { include = "difference_finder" },
+]
+classifiers = [
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+repository = "https://github.com/NMorphey/python-project-50"
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
