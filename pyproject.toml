@@ -5,7 +5,7 @@ description = "JSON/YAML files comparing tool"
 authors = ["Ivlev Nikita <thel4stofme@yandex.ru>"]
 readme = "README.md"
 packages = [
-  { include = "difference_finder" },
+  { include = "gendiff" },
 ]
 classifiers = [
     "Topic :: Software Development :: Build Tools",
@@ -15,7 +15,7 @@ repository = "https://github.com/NMorphey/python-project-50"
 
 
 [tool.poetry.scripts]
-gendiff = 'difference_finder.scripts.gendiff:main'
+gendiff = 'gendiff.scripts.gendiff:main'
 
 
 [tool.poetry.dependencies]
