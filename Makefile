@@ -18,5 +18,5 @@ lint:
 
 reinstall: build publish package-install
 
-tests:
+pytest:
 	poetry run pytest
