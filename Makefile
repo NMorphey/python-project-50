@@ -17,3 +17,6 @@ lint:
 	poetry run flake8 brain_games
 
 reinstall: build publish package-install
+
+tests:
+	poetry run pytest
