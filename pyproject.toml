@@ -20,6 +20,7 @@ gendiff = 'gendiff.scripts.gendiff:main'
 
 [tool.poetry.dependencies]
 python = "^3.10"
+flake8 = "^6.1.0"
 
 
 [build-system]
