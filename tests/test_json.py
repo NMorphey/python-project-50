@@ -1,12 +1,12 @@
 from gendiff.gendiff import generate_diff
 
 
-FILE_1_JSON_NAME = 'file1.json'
-FILE_2_JSON_NAME = 'file2.json'
+FILE_1_JSON_PATH = 'tests/file1.json'
+FILE_2_JSON_PATH = 'tests/file2.json'
 
 
 def test_example_files_comparision():
-    assert generate_diff(FILE_1_JSON_NAME, FILE_2_JSON_NAME) == (
+    assert generate_diff(FILE_1_JSON_PATH, FILE_2_JSON_PATH) == (
         """{
   - follow: false
     host: hexlet.io
