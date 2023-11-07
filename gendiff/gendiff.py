@@ -8,7 +8,7 @@ IDENTS = {
 }
 
 
-INCORRENT_PARSABLE_CONSTANTS = {
+INCORRENTLY_PARSABLE_CONSTANTS = {
     True: 'true',
     False: 'false',
     None: 'null'
@@ -42,8 +42,8 @@ def generate_diff(file_path_1, file_path_2) -> str:
     
     result = '{\n'
     for ident, key, value in changes:
-        if value in INCORRENT_PARSABLE_CONSTANTS:
-            value = INCORRENT_PARSABLE_CONSTANTS[value]
+        if value in INCORRENTLY_PARSABLE_CONSTANTS:
+            value = INCORRENTLY_PARSABLE_CONSTANTS[value]
         result += f'{IDENTS[ident]}{key}: {value}\n'
     result += '}'
     
