@@ -14,7 +14,7 @@ package-install:
 	python3 -m pip install --user --force-reinstall dist/*.whl
 
 lint:
-	poetry run flake8 brain_games
+	poetry run flake8 gendiff
 
 reinstall: build publish package-install
 
