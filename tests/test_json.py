@@ -1,4 +1,4 @@
-from gendiff.gendiff import generate_diff
+from gendiff import generate_diff
 
 
 FILE_1_JSON_PATH = 'tests/file1.json'
