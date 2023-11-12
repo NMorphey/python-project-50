@@ -1,0 +1,6 @@
+{
+  + is_test: true
+  + keys shall be sortet alphabetically: true
+  + some number: 42
+  + what is being tested: comparing similar JSONs
+}
