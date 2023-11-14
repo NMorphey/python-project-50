@@ -10,7 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: flake8
-        working-directory: ./python-project-50
         run: make lint
 
   run_tests:
@@ -18,5 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: pytest
-        working-directory: ./python-project-50
         run: make pytest
+  
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: path
+        run: echo $PWD
