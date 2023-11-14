@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 
 jobs:
-  run_linter:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,26 +16,8 @@ jobs:
       - name: install dependencies
         run: poetry install
 
-      - name: flake8
+      - name: linter
         run: make lint
 
-  run_tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: install poerty
-        uses: snok/install-poetry@v1
-
-      - name: install dependencies
-        run: poetry install
-
-      - name: pytest
+      - name: tests
         run: make pytest
-  
-  debug:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: path
-        run: echo $PWD
