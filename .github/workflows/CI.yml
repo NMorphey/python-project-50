@@ -10,11 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: linter
-      run: make lint
+        run: make lint
 
   run_tests:
   runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: linter
-      run: make pytest
+        run: make pytest
