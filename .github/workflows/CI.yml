@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-lastest
     steps:
       - uses: actions/checkout@v3
-      name: linter
+      - name: linter
       run: make lint
 
   run_tests:
   runs-on: ubuntu-lastest
     steps:
       - uses: actions/checkout@v3
-      name: linter
+      - name: linter
       run: make pytest
