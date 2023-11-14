@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: install poerty
-        run: apt install poetry
+        uses: snok/install-poetry@v1
         
       - name: install dependencies
         run: poetry install
@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: install poerty
-        run: apt install poetry
+        uses: snok/install-poetry@v1
 
       - name: install dependencies
         run: poetry install
