@@ -9,12 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: linter
+      - name: flake8
+        working-directory: ./python-project-50
         run: make lint
 
   run_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: linter
+      - name: pytest
+        working-directory: ./python-project-50
         run: make pytest
