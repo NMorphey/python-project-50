@@ -6,14 +6,14 @@ on:
 
 jobs:
   run_linter:
-    runs-on: ubuntu-lastest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: linter
       run: make lint
 
   run_tests:
-  runs-on: ubuntu-lastest
+  runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: linter
