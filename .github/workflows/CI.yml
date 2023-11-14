@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: install dependencies
+        run: poetry install
+
       - name: flake8
         run: make lint
 
@@ -16,6 +20,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
+      - name: install dependencies
+        run: poetry install
+
       - name: pytest
         run: make pytest
   
