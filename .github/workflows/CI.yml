@@ -16,8 +16,6 @@ jobs:
       - name: install dependencies
         run: poetry install
 
-      - name: linter
-        run: make lint
 
       - name: tests
         run: make pytest
@@ -29,3 +27,6 @@ jobs:
         with:
           coverageCommand: make test-coverage
           debug: true
+      
+      - name: linter
+        run: make lint
