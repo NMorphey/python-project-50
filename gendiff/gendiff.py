@@ -15,6 +15,12 @@ INCORRENTLY_PARSABLE_CONSTANTS = {
 }
 
 
+def remove_incorrectly_parsable(value):
+    if value in INCORRENTLY_PARSABLE_CONSTANTS:
+        return INCORRENTLY_PARSABLE_CONSTANTS[value]
+    return value
+
+
 def generate_diff(file_path_1, file_path_2) -> str:
     with open(file_path_1) as file_1:
         json_1 = loads(file_1.read(), parse_constant=True)
@@ -45,8 +51,7 @@ def generate_diff(file_path_1, file_path_2) -> str:
 
     result = '{\n'
     for ident, key, value in changes:
-        if value in INCORRENTLY_PARSABLE_CONSTANTS:
-            value = INCORRENTLY_PARSABLE_CONSTANTS[value]
+        value = remove_incorrectly_parsable(value)
         result += f'{IDENTS[ident]}{key}: {value}\n'
     result += '}'
 
