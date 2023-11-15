@@ -27,18 +27,21 @@ def generate_diff(file_path_1, file_path_2) -> str:
     for key in all_keys_sorted:
         key_in_json_1 = key in json_1
         key_in_json_2 = key in json_2
-        if key_in_json_1 and not key_in_json_2:
-            changes.append(('removed', key, json_1[key]))
-        elif key_in_json_2 and not key_in_json_1:
-            changes.append(('added', key, json_2[key]))
-        elif key_in_json_1 and key_in_json_2:
-            json_1_value = json_1[key]
-            json_2_value = json_2[key]
-            if json_1_value == json_2_value:
-                changes.append(('remained', key, json_1_value))
+        if key_in_json_1:
+            if key_in_json_2:
+                json_1_value = json_1[key]
+                json_2_value = json_2[key]
+                if json_1_value == json_2_value:
+                    changes.append(('remained', key, json_1_value))
+                else:
+                    changes.append(('removed', key, json_1_value))
+                    changes.append(('added', key, json_2_value))
             else:
-                changes.append(('removed', key, json_1_value))
-                changes.append(('added', key, json_2_value))
+                changes.append(('removed', key, json_1[key]))
+        else:
+            changes.append(('added', key, json_2[key]))
+            #  If there's no key in JSON 1, then
+            #  the only way it appeared in all_keys - it IS in JSON 2
 
     result = '{\n'
     for ident, key, value in changes:
