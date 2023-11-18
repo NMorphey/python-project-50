@@ -29,7 +29,7 @@ def collect_data(file_path):
             return loads(file.read(), parse_constant=True)
         elif file_extension == 'yaml':
             return safe_load(file.read())
-    raise Exception(f"Incorrect file extension: (.{file_extension})")
+    raise ValueError(f"Incorrect file extension: (.{file_extension})")
 
 
 def generate_diff(file_path_1, file_path_2) -> str:
