@@ -24,10 +24,11 @@ def remove_incorrectly_parsable(value):
 
 def collect_data(file_path):
     file_extension = file_path.split('.')[-1].lower()
-    with open(file_path) as file:
-        if file_extension == 'json':
+    if file_extension == 'json':
+        with open(file_path) as file:
             return loads(file.read(), parse_constant=True)
-        elif file_extension == 'yaml':
+    elif file_extension == 'yaml':
+        with open(file_path) as file:
             return safe_load(file.read())
     raise ValueError(f"Incorrect file extension: (.{file_extension})")
 
