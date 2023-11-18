@@ -23,29 +23,29 @@ def remove_incorrectly_parsable(value):
 
 def generate_diff(file_path_1, file_path_2) -> str:
     with open(file_path_1) as file_1:
-        json_1 = loads(file_1.read(), parse_constant=True)
+        data_1 = loads(file_1.read(), parse_constant=True)
     with open(file_path_2) as file_2:
-        json_2 = loads(file_2.read(), parse_constant=True)
-    all_keys = set(json_1.keys()) | set(json_2.keys())
+        data_2 = loads(file_2.read(), parse_constant=True)
+    all_keys = set(data_1.keys()) | set(data_2.keys())
     all_keys_sorted = sorted(list(all_keys))
 
     changes = []
     for key in all_keys_sorted:
-        key_in_json_1 = key in json_1
-        key_in_json_2 = key in json_2
-        if key_in_json_1:
-            if key_in_json_2:
-                json_1_value = json_1[key]
-                json_2_value = json_2[key]
-                if json_1_value == json_2_value:
-                    changes.append(('remained', key, json_1_value))
+        key_in_data_1 = key in data_1
+        key_in_data_2 = key in data_2
+        if key_in_data_1:
+            if key_in_data_2:
+                data_1_value = data_1[key]
+                data_2_value = data_2[key]
+                if data_1_value == data_2_value:
+                    changes.append(('remained', key, data_1_value))
                 else:
-                    changes.append(('removed', key, json_1_value))
-                    changes.append(('added', key, json_2_value))
+                    changes.append(('removed', key, data_1_value))
+                    changes.append(('added', key, data_2_value))
             else:
-                changes.append(('removed', key, json_1[key]))
+                changes.append(('removed', key, data_1[key]))
         else:
-            changes.append(('added', key, json_2[key]))
+            changes.append(('added', key, data_2[key]))
             #  If there's no key in JSON 1, then
             #  the only way it appeared in all_keys - it IS in JSON 2
 
