@@ -24,13 +24,16 @@ def remove_incorrectly_parsable(value):
 
 def collect_data(file_path):
     file_extension = file_path.split('.')[-1].lower()
+    value_error = ValueError(f"Incorrect file extension: (.{file_extension})")
+    if file_path == file_extension:
+        raise value_error
     if file_extension == 'json':
         with open(file_path) as file:
             return loads(file.read(), parse_constant=True)
     elif file_extension == 'yaml':
         with open(file_path) as file:
             return safe_load(file.read())
-    raise ValueError(f"Incorrect file extension: (.{file_extension})")
+    raise value_error
 
 
 def generate_diff(file_path_1, file_path_2) -> str:
