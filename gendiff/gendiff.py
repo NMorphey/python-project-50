@@ -1,4 +1,5 @@
 from json import loads
+from yaml import safe_load
 
 
 IDENTS = {
@@ -21,11 +22,19 @@ def remove_incorrectly_parsable(value):
     return value
 
 
+def collect_data(file_path):
+    file_extension = file_path.split('.')[-1].lower()
+    with open(file_path) as file:
+        if file_extension == 'json':
+            return loads(file.read(), parse_constant=True)
+        elif file_extension == 'yaml':
+            return safe_load(file.read())
+    raise Exception(f"Incorrect file extension: (.{file_extension})")
+
+
 def generate_diff(file_path_1, file_path_2) -> str:
-    with open(file_path_1) as file_1:
-        data_1 = loads(file_1.read(), parse_constant=True)
-    with open(file_path_2) as file_2:
-        data_2 = loads(file_2.read(), parse_constant=True)
+    data_1 = collect_data(file_path_1)
+    data_2 = collect_data(file_path_2)
     all_keys = set(data_1.keys()) | set(data_2.keys())
     all_keys_sorted = sorted(list(all_keys))
 
