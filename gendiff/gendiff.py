@@ -30,7 +30,7 @@ def collect_data(file_path):
     if file_extension == 'json':
         with open(file_path) as file:
             return loads(file.read(), parse_constant=True)
-    elif file_extension == 'yaml':
+    elif file_extension in ['yml', 'yaml']:
         with open(file_path) as file:
             decoded_result = safe_load(file.read())
             return decoded_result if decoded_result else {}
