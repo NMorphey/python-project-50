@@ -32,7 +32,8 @@ def collect_data(file_path):
             return loads(file.read(), parse_constant=True)
     elif file_extension == 'yaml':
         with open(file_path) as file:
-            return safe_load(file.read())
+            decoded_result = safe_load(file.read())
+            return decoded_result if decoded_result else {}
     raise value_error
 
 
