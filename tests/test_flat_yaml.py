@@ -28,9 +28,8 @@ def test_strings_format():
     assert generate_diff(yaml_1_path, yaml_2_path) == result
 
 def test_similar():
-    yaml_path = f'{FIXTURES_PATH}/empty.yaml'
+    yaml_path = f'{FIXTURES_PATH}/strings_format_1.yaml'
     result_path = f'{FIXTURES_PATH}/similar_result'
     with open(result_path) as file:
       result = file.read()
     assert generate_diff(yaml_path, yaml_path) == result
-
