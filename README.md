@@ -3,3 +3,4 @@
 
 ### ASCIINEMA
 [![asciicast](https://asciinema.org/a/bQ0cLk3CMkdNALJTBB2zXuoYB.svg)](https://asciinema.org/a/bQ0cLk3CMkdNALJTBB2zXuoYB)
+[![asciicast](https://asciinema.org/a/av3uinFqnS78sAWP1N3BI4gW3.svg)](https://asciinema.org/a/av3uinFqnS78sAWP1N3BI4gW3)
