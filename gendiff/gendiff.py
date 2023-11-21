@@ -37,32 +37,38 @@ def collect_data(file_path):
     raise value_error
 
 
-def generate_diff(file_path_1, file_path_2) -> str:
-    data_1 = collect_data(file_path_1)
-    data_2 = collect_data(file_path_2)
-    all_keys = set(data_1.keys()) | set(data_2.keys())
+def compare_datasets(dataset_1, dataset_2):
+    all_keys = set(dataset_1.keys()) | set(dataset_2.keys())
     all_keys_sorted = sorted(list(all_keys))
 
     changes = []
     for key in all_keys_sorted:
-        key_in_data_1 = key in data_1
-        key_in_data_2 = key in data_2
-        if key_in_data_1:
-            if key_in_data_2:
-                data_1_value = data_1[key]
-                data_2_value = data_2[key]
+        key_in_dataset_1 = key in dataset_1
+        key_in_dataset_2 = key in dataset_2
+        if key_in_dataset_1:
+            if key_in_dataset_2:
+                data_1_value = dataset_1[key]
+                data_2_value = dataset_2[key]
                 if data_1_value == data_2_value:
                     changes.append(('remained', key, data_1_value))
                 else:
                     changes.append(('removed', key, data_1_value))
                     changes.append(('added', key, data_2_value))
             else:
-                changes.append(('removed', key, data_1[key]))
+                changes.append(('removed', key, dataset_1[key]))
         else:
-            changes.append(('added', key, data_2[key]))
+            changes.append(('added', key, dataset_2[key]))
             #  If there's no key in JSON 1, then
             #  the only way it appeared in all_keys - it IS in JSON 2
+    
+    return changes
 
+
+def generate_diff(file_path_1, file_path_2) -> str:
+    data_1 = collect_data(file_path_1)
+    data_2 = collect_data(file_path_2)
+    
+    changes = compare_datasets(data_1, data_2)
     result = '{\n'
     for ident, key, value in changes:
         value = remove_incorrectly_parsable(value)
