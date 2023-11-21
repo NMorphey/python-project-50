@@ -1,7 +1,7 @@
 from gendiff import generate_diff
 
 
-FIXTURES_PATH = 'tests/fixtures/flat_json'
+FIXTURES_PATH = 'tests/fixtures/recursive'
 
 
 def test_example_files():
