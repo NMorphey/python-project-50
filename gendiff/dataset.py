@@ -37,12 +37,6 @@ def get_change(dataset):
     return dataset['change']
 
 
-def has_subtrees(dataset):
-    children = get_children(dataset)
-    if not children:
-        return False
-    return reduce(or_, map(lambda child: get_children(child), children))
-
 def is_dataset(var):
     if not isinstance(var, list):
         return False
