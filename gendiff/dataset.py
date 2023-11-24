@@ -42,3 +42,10 @@ def has_subtrees(dataset):
     if not children:
         return False
     return reduce(or_, map(lambda child: get_children(child), children))
+
+def is_dataset(var):
+    if not isinstance(var, list):
+        return False
+    if var.keys() != ['name', 'children', 'change']:
+        return False
+    return True
