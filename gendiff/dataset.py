@@ -1,5 +1,3 @@
-from operator import or_
-from functools import reduce
 from copy import deepcopy
 
 
@@ -15,7 +13,7 @@ def create_dataset(*, name=None, data={}, value=None, change=None):
         'change': change
     }
 
-    if isinstance(data, dict):  # Also true by default i.e. in cases w/o any data
+    if isinstance(data, dict):  # Also true by default (in cases w/o any data)
         for key in data.keys():
             dataset['children'].append(create_dataset(
                 name=key,
@@ -85,17 +83,17 @@ def compare_datasets(dataset_1, dataset_2, *, name=None):
     result_dataset = create_dataset(name=name)
     dataset_1_has_children = has_children(dataset_1)
     dataset_2_has_children = has_children(dataset_2)
-    
+
     if dataset_1 == dataset_2:
         return dataset_1
-    
+
     match dataset_1_has_children, dataset_2_has_children:
-        
+
         case False, False:
             if dataset_1 == dataset_2:
                 add_child(result_dataset, copy_dataset(dataset_1))
             else:
-                dataset_1_copy = copy_dataset(dataset_1) # WET?
+                dataset_1_copy = copy_dataset(dataset_1)  # WET?
                 dataset_2_copy = copy_dataset(dataset_2)
                 set_change(dataset_1_copy, REMOVED)
                 set_change(dataset_2_copy, ADDED)
@@ -103,7 +101,7 @@ def compare_datasets(dataset_1, dataset_2, *, name=None):
                 add_child(result_dataset, dataset_2_copy)
 
         case True, False:
-            dataset_1_copy = copy_dataset(dataset_1) # WET?
+            dataset_1_copy = copy_dataset(dataset_1)  # WET?
             if get_name(dataset_2) is None:
                 for child in get_children(dataset_1_copy):
                     set_change(child, REMOVED)
@@ -113,14 +111,14 @@ def compare_datasets(dataset_1, dataset_2, *, name=None):
             set_change(dataset_2_copy, ADDED)
             add_child(result_dataset, dataset_1_copy)
             add_child(result_dataset, dataset_2_copy)
-        
+
         case False, True:
-            dataset_2_copy = copy_dataset(dataset_2)# WET?
+            dataset_2_copy = copy_dataset(dataset_2)  # WET?
             if get_name(dataset_1) is None:
                 for child in get_children(dataset_2_copy):
                     set_change(child, ADDED)
                 return dataset_2_copy
-            dataset_1_copy = copy_dataset(dataset_1) 
+            dataset_1_copy = copy_dataset(dataset_1)
             set_change(dataset_1_copy, REMOVED)
             set_change(dataset_2_copy, ADDED)
             add_child(result_dataset, dataset_1_copy)
@@ -134,17 +132,17 @@ def compare_datasets(dataset_1, dataset_2, *, name=None):
             removed_keys = set(children_1) - set(children_2)
             remained_keys = set(children_1) & set(children_2)
             added_keys = set(children_2) - set(children_1)
-            
+
             for key in removed_keys:
                 removed_dataset = copy_dataset(children_1[key])
                 set_change(removed_dataset, REMOVED)
                 add_child(result_dataset, removed_dataset)
-                
+
             for key in added_keys:
                 added_dataset = copy_dataset(children_2[key])
                 set_change(added_dataset, ADDED)
                 add_child(result_dataset, added_dataset)
-                
+
             for key in remained_keys:
                 child_1 = children_1[key]
                 child_2 = children_2[key]
@@ -160,5 +158,5 @@ def compare_datasets(dataset_1, dataset_2, *, name=None):
                     for child in get_children(comparing):
                         add_child(branch, child)
                     add_child(result_dataset, branch)
-            
+
     return result_dataset

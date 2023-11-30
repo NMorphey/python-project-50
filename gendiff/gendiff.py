@@ -27,7 +27,7 @@ def dataset_to_string(dataset, *, formater=stylish):
 def generate_diff(file_path_1, file_path_2) -> str:
     data_1 = collect_data(file_path_1)
     data_2 = collect_data(file_path_2)
-    
+
     dataset_1 = create_dataset(data=data_1)
     dataset_2 = create_dataset(data=data_2)
-    return dataset_to_string(compare_datasets(dataset_1,dataset_2))
+    return dataset_to_string(compare_datasets(dataset_1, dataset_2))
