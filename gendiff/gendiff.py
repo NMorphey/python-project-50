@@ -2,7 +2,6 @@ from json import loads
 from yaml import safe_load
 
 from gendiff.dataset import create_dataset, compare_datasets
-from gendiff.formaters.stylish import stylish
 
 
 def collect_data(file_path):
