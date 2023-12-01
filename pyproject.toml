@@ -6,6 +6,7 @@ authors = ["Ivlev Nikita <thel4stofme@yandex.ru>"]
 readme = "README.md"
 packages = [
   { include = "gendiff" },
+  { include = "gendiff/formaters" }
 ]
 classifiers = [
     "Topic :: Software Development :: Build Tools",
