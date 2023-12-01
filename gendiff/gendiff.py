@@ -2,7 +2,7 @@ from json import loads
 from yaml import safe_load
 
 from gendiff.dataset import create_dataset, compare_datasets
-from gendiff.stylish import stylish
+from gendiff.formaters.stylish import stylish
 
 
 def collect_data(file_path):
@@ -24,7 +24,7 @@ def dataset_to_string(dataset, formater):
     return formater(dataset)
 
 
-def generate_diff(file_path_1, file_path_2, *, formater=stylish) -> str:
+def generate_diff(file_path_1, file_path_2, formater) -> str:
     data_1 = collect_data(file_path_1)
     data_2 = collect_data(file_path_2)
 

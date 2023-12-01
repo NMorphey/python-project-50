@@ -3,6 +3,8 @@
 import argparse
 
 from gendiff.gendiff import generate_diff
+from gendiff.formaters.stylish import stylish
+from gendiff.formaters.plain import plain
 
 
 def main():
@@ -17,8 +19,13 @@ def main():
     args = parser.parse_args()
     first_file_name = args.first_file
     second_file_name = args.second_file
+    match args.format:
+        case 'plain':
+            formater = plain
+        case _:
+            formater = stylish
 
-    print(generate_diff(first_file_name, second_file_name))
+    print(generate_diff(first_file_name, second_file_name), formater)
 
 
 if __name__ == '__main__':
