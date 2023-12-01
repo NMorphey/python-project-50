@@ -1,7 +1,7 @@
 import pytest
 
 from gendiff.dataset import create_dataset
-from gendiff.formaters.stylish import stylish, plain
+from gendiff.formaters.stylish import stylish
 
 
 def test_uncompared_datasets():
@@ -17,4 +17,3 @@ def test_uncompared_datasets():
 
 def test_empty_dataset():
     assert(stylish(create_dataset())) == '{\n}'
-
