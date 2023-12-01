@@ -25,7 +25,7 @@ def main():
         case _:
             formater = stylish
 
-    print(generate_diff(first_file_name, second_file_name), formater)
+    print(generate_diff(first_file_name, second_file_name, formater))
 
 
 if __name__ == '__main__':
