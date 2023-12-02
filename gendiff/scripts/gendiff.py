@@ -4,9 +4,6 @@ import argparse
 from datetime import datetime
 
 from gendiff.gendiff import generate_diff
-from gendiff.formaters.stylish import stylish
-from gendiff.formaters.plain import plain
-from gendiff.formaters.json import json
 
 
 def main():
@@ -25,13 +22,15 @@ def main():
     try:
         result = generate_diff(first_file_name, second_file_name, args.format)
         if args.format == 'json':
-            filename = f'{datetime.today().strftime("%d%m%Y-%H%M")}-gendiff.json'
+            time = datetime.today().strftime("%d%m%Y-%H%M")
+            filename = f'{time}-gendiff.json'
             with open(filename, 'w') as file:
                 file.write(result)
         else:
             print(result)
     except Exception as e:
         print(f'An error occured: "{e.args[0]}"! See documentation.')
+
 
 if __name__ == '__main__':
     main()
