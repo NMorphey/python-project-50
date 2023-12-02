@@ -38,6 +38,8 @@ def generate_diff(file_path_1, file_path_2, formater_name='stylish') -> str:
             formater = json
         case 'stylish':
             formater = stylish
+        case None:
+            formater = stylish
         case _:
             raise ValueError('Wrong formater')
 
