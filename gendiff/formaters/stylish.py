@@ -1,6 +1,7 @@
 from gendiff.dataset import get_name, get_children, get_change, get_value
 from gendiff.dataset import has_children
 from gendiff.dataset import REMOVED, ADDED
+from formaters.formatest import remove_incorrectly_parsable
 
 
 IDENTS = {
@@ -8,19 +9,6 @@ IDENTS = {
     ADDED: '+ ',
     None: '  '
 }
-
-INCORRENTLY_PARSABLE_CONSTANTS = {
-    True: 'true',
-    False: 'false',
-    None: 'null'
-}
-
-
-def remove_incorrectly_parsable(value):
-    for constant in INCORRENTLY_PARSABLE_CONSTANTS:
-        if value is constant:
-            return INCORRENTLY_PARSABLE_CONSTANTS[constant]
-    return value
 
 
 def stylish(dataset, depth=0) -> str:

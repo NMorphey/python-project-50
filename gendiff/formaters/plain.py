@@ -3,16 +3,10 @@ from collections import defaultdict
 from gendiff.dataset import get_name, get_children, get_change, get_value
 from gendiff.dataset import has_children
 from gendiff.dataset import REMOVED, ADDED
+from formaters.formatest import remove_incorrectly_parsable
 
 
 UPDATED = 'updated'
-
-
-INCORRENTLY_PARSABLE_CONSTANTS = {
-    True: 'true',
-    False: 'false',
-    None: 'null'
-}
 
 
 def parse_plain(dataset, path=[]):
@@ -38,12 +32,6 @@ def add_quotation_marks_if_needed(value):
         return value
     if value != '[complex value]':
         return f"'{value}'"
-    return value
-
-
-def remove_incorrectly_parsable(value):
-    if value in INCORRENTLY_PARSABLE_CONSTANTS:
-        return INCORRENTLY_PARSABLE_CONSTANTS[value]
     return value
 
 
