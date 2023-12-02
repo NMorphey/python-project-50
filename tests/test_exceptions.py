@@ -1,7 +1,6 @@
 import pytest
 
 from gendiff import generate_diff
-from gendiff.formaters.stylish import stylish
 
 
 def test_incorrect_extension():
