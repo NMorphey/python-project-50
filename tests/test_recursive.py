@@ -1,6 +1,7 @@
 from gendiff import generate_diff
 from gendiff.formaters.stylish import stylish
 from gendiff.formaters.plain import plain
+from gendiff.formaters.json import json
 
 
 FIXTURES_PATH = 'tests/fixtures/recursive'
@@ -27,4 +28,6 @@ def test_example_files():
     
     assert generate_diff(json_1_path, json_2_path, plain) == result_plain
     
-    
+    with open(f'{FIXTURES_PATH}/example_result_plain') as file:
+        result_json = file.read()
+    assert generate_diff(json_1_path, json_2_path, json) == result_json

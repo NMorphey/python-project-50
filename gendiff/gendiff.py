@@ -19,7 +19,7 @@ def collect_data(file_path):
     raise value_error
 
 
-def dataset_to_string(dataset, formater):
+def parse_dataset(dataset, formater):
     return formater(dataset)
 
 
@@ -29,4 +29,4 @@ def generate_diff(file_path_1, file_path_2, formater) -> str:
 
     dataset_1 = create_dataset(data=data_1)
     dataset_2 = create_dataset(data=data_2)
-    return dataset_to_string(compare_datasets(dataset_1, dataset_2), formater)
+    return parse_dataset(compare_datasets(dataset_1, dataset_2), formater)
