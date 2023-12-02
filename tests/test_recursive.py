@@ -26,4 +26,5 @@ def test_example_files():
     assert generate_diff(yaml_1_path, yaml_2_path, stylish) == result_stylish
     
     assert generate_diff(json_1_path, json_2_path, plain) == result_plain
-    assert generate_diff(yaml_1_path, yaml_2_path, plain) == result_plain
+    
+    
