@@ -17,8 +17,9 @@ INCORRENTLY_PARSABLE_CONSTANTS = {
 
 
 def remove_incorrectly_parsable(value):
-    if value in INCORRENTLY_PARSABLE_CONSTANTS:
-        return INCORRENTLY_PARSABLE_CONSTANTS[value]
+    for constant in INCORRENTLY_PARSABLE_CONSTANTS:
+        if value is constant:
+            return INCORRENTLY_PARSABLE_CONSTANTS[constant]
     return value
 
 
