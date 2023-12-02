@@ -21,16 +21,9 @@ def main():
     args = parser.parse_args()
     first_file_name = args.first_file
     second_file_name = args.second_file
-    match args.format:
-        case 'plain':
-            formater = plain
-        case 'json':
-            formater = json
-        case _:
-            formater = stylish
 
-    result = generate_diff(first_file_name, second_file_name, formater)
-    if formater == json:
+    result = generate_diff(first_file_name, second_file_name, args.format)
+    if args.format == 'json':
         filename = f'{datetime.today().strftime("%d%m%Y-%H%M")}-gendiff.json'
         with open(filename, 'w') as file:
             file.write(result)

@@ -1,7 +1,9 @@
 from json import loads
 from yaml import safe_load
 
-
+from gendiff.formaters.stylish import stylish
+from gendiff.formaters.plain import plain
+from gendiff.formaters.json import json
 from gendiff.dataset import create_dataset, compare_datasets
 
 
@@ -24,10 +26,23 @@ def parse_dataset(dataset, formater):
     return formater(dataset)
 
 
-def generate_diff(file_path_1, file_path_2, formater) -> str:
+def generate_diff(file_path_1, file_path_2, formater_name) -> str:
     data_1 = collect_data(file_path_1)
     data_2 = collect_data(file_path_2)
 
     dataset_1 = create_dataset(data=data_1)
     dataset_2 = create_dataset(data=data_2)
+    
+    match formater_name:
+        case 'plain':
+            formater = plain
+        case 'json':
+            formater = json
+        case 'stylish':
+            formater = stylish
+        case None:
+            formater = stylish
+        case _:
+            pass
+
     return parse_dataset(compare_datasets(dataset_1, dataset_2), formater)

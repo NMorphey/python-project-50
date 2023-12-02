@@ -25,11 +25,12 @@ def test_example_files():
     with open(result_path_plain) as file:
       result_plain = file.read()
     
-    assert generate_diff(json_1_path, json_2_path, stylish) == result_stylish
-    assert generate_diff(yaml_1_path, yaml_2_path, stylish) == result_stylish
+    assert generate_diff(json_1_path, json_2_path, 'stylish') == result_stylish
+    assert generate_diff(json_1_path, json_2_path, None) == result_stylish
+    assert generate_diff(yaml_1_path, yaml_2_path, 'stylish') == result_stylish
     
-    assert generate_diff(json_1_path, json_2_path, plain) == result_plain
+    assert generate_diff(json_1_path, json_2_path, 'plain') == result_plain
     
     with open(f'{FIXTURES_PATH}/example_result.json') as file:
         result_json = file.read()
-    assert generate_diff(json_1_path, json_2_path, json) == result_json
+    assert generate_diff(json_1_path, json_2_path, 'json') == result_json
