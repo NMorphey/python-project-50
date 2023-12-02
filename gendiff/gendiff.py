@@ -14,7 +14,7 @@ def collect_data(file_path):
         raise value_error
     if file_extension == 'json':
         with open(file_path) as file:
-            return loads(file.read(), parse_constant=True)
+            return loads(file.read())
     elif file_extension in ['yml', 'yaml']:
         with open(file_path) as file:
             decoded_result = safe_load(file.read())
