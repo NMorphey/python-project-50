@@ -26,7 +26,7 @@ def parse_dataset(dataset, formater):
     return formater(dataset)
 
 
-def generate_diff(file_path_1, file_path_2, formater_name) -> str:
+def generate_diff(file_path_1, file_path_2, formater_name='stylish') -> str:
 
     if type(formater_name) is str:
         formater_name = formater_name.lower()
@@ -37,8 +37,6 @@ def generate_diff(file_path_1, file_path_2, formater_name) -> str:
         case 'json':
             formater = json
         case 'stylish':
-            formater = stylish
-        case None:
             formater = stylish
         case _:
             raise ValueError('Wrong formater')
