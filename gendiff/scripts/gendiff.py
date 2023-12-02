@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 
 import argparse
+from datetime import datetime
 
 from gendiff.gendiff import generate_diff
 from gendiff.formaters.stylish import stylish
 from gendiff.formaters.plain import plain
+from gendiff.formaters.json import json
 
 
 def main():
@@ -22,10 +24,18 @@ def main():
     match args.format:
         case 'plain':
             formater = plain
+        case 'json':
+            formater = json
         case _:
             formater = stylish
 
-    print(generate_diff(first_file_name, second_file_name, formater))
+    result = generate_diff(first_file_name, second_file_name, formater)
+    if formater == json:
+        filename = f'{datetime.today().strftime("%d%m%Y-%H%M")}-gendiff.json'
+        with open(filename, 'w') as file:
+            file.write(result)
+    else:
+        print(result)
 
 
 if __name__ == '__main__':
