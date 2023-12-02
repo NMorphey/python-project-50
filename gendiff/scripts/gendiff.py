@@ -22,14 +22,16 @@ def main():
     first_file_name = args.first_file
     second_file_name = args.second_file
 
-    result = generate_diff(first_file_name, second_file_name, args.format)
-    if args.format == 'json':
-        filename = f'{datetime.today().strftime("%d%m%Y-%H%M")}-gendiff.json'
-        with open(filename, 'w') as file:
-            file.write(result)
-    else:
-        print(result)
-
+    try:
+        result = generate_diff(first_file_name, second_file_name, args.format)
+        if args.format == 'json':
+            filename = f'{datetime.today().strftime("%d%m%Y-%H%M")}-gendiff.json'
+            with open(filename, 'w') as file:
+                file.write(result)
+        else:
+            print(result)
+    except Exception as e:
+        print(f'An error occured: "{e.args[0]}"! See documentation.')
 
 if __name__ == '__main__':
     main()

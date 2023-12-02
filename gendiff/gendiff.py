@@ -27,11 +27,9 @@ def parse_dataset(dataset, formater):
 
 
 def generate_diff(file_path_1, file_path_2, formater_name) -> str:
-    data_1 = collect_data(file_path_1)
-    data_2 = collect_data(file_path_2)
-
-    dataset_1 = create_dataset(data=data_1)
-    dataset_2 = create_dataset(data=data_2)
+    
+    if type(formater_name) == str:
+        formater_name = formater_name.lower()
     
     match formater_name:
         case 'plain':
@@ -43,6 +41,12 @@ def generate_diff(file_path_1, file_path_2, formater_name) -> str:
         case None:
             formater = stylish
         case _:
-            pass
+            raise ValueError('Wrong formater')
+        
+    data_1 = collect_data(file_path_1)
+    data_2 = collect_data(file_path_2)
+
+    dataset_1 = create_dataset(data=data_1)
+    dataset_2 = create_dataset(data=data_2)
 
     return parse_dataset(compare_datasets(dataset_1, dataset_2), formater)
