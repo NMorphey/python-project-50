@@ -12,7 +12,11 @@ def main():
     )
     parser.add_argument('first_file', metavar='first_file')
     parser.add_argument('second_file', metavar='second_file')
-    parser.add_argument('-f', '--format', help='set format of output')
+    parser.add_argument('-v', '--version', action='version',
+                        version='gendiff version: 0.1.0',
+                        help='output the version number')
+    parser.add_argument('-f', '--format',
+                        help='output format (default: "stylish")')
 
     args = parser.parse_args()
     first_file_name = args.first_file
