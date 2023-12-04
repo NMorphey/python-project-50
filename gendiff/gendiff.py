@@ -1,9 +1,7 @@
 from json import loads
 from yaml import safe_load
 
-from gendiff.formaters.stylish import stylish
-from gendiff.formaters.plain import plain
-from gendiff.formaters.json import json
+from gendiff.formaters.formaters import FORMATERS
 from gendiff.dataset import create_dataset, compare_datasets
 
 
@@ -31,17 +29,10 @@ def generate_diff(file_path_1, file_path_2, formater_name='stylish') -> str:
     if type(formater_name) is str:
         formater_name = formater_name.lower()
 
-    match formater_name:
-        case 'plain':
-            formater = plain
-        case 'json':
-            formater = json
-        case 'stylish':
-            formater = stylish
-        case None:
-            formater = stylish
-        case _:
-            raise ValueError('Wrong formater')
+    if formater_name in FORMATERS:
+        formater = FORMATERS[formater_name]
+    else:
+        raise ValueError('Wrong formater')
 
     data_1 = collect_data(file_path_1)
     data_2 = collect_data(file_path_2)

@@ -1,7 +1,19 @@
+from gendiff.formaters.stylish import stylish
+from gendiff.formaters.plain import plain
+from gendiff.formaters.json import json
+
+
 INCORRENTLY_PARSABLE_CONSTANTS = {
     True: 'true',
     False: 'false',
     None: 'null'
+}
+
+FORMATERS = {
+    None: stylish,
+    'stylish': stylish,
+    'plain': plain,
+    'json': json
 }
 
 
