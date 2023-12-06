@@ -1,7 +1,7 @@
 from gendiff.dataset import get_name, get_children, get_change, get_value
 from gendiff.dataset import has_children
 from gendiff.dataset import REMOVED, ADDED
-from gendiff.formaters.formaters import remove_incorrectly_parsable
+from gendiff.formaters.formaters_inner import remove_incorrectly_parsable
 
 
 IDENTS = {
